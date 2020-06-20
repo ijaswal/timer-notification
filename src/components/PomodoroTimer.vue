@@ -57,9 +57,9 @@ export default {
   data: () => ({
     pomodoroCount: 0,
     pomodoroArray: [false, false, false, false],
-    totalTime: 3,
-    totalShortTime: 5,
-    totalLongTime: 10,
+    totalTime: 1500,
+    totalShortTime: 300,
+    totalLongTime: 900,
     startHour: 0,
     startMinute: 0,
     startSecond: 3,

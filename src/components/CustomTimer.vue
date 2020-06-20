@@ -5,19 +5,19 @@
         <h1 class="display-4 font-weight-bold mb-1">
           <v-row class="mx-auto" align="center" justify="center">
             <div
-              class="pa-0 ma-0"
+              class="timer-input pa-0 ma-0"
               contenteditable
               @blur="setHour"
               :key="editingHour + '-Hour'"
             >{{displayHour}}</div>:
             <div
-              class="pa-0 ma-0"
+              class="timer-input pa-0 ma-0"
               contenteditable
               @blur="setMinute"
               :key="editingMinute + '-Minute'"
             >{{displayMinute}}</div>:
             <div
-              class="pa-0 ma-0"
+              class="timer-input pa-0 ma-0"
               contenteditable
               @blur="setSecond"
               :key="editingSecond + '-Second'"
