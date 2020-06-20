@@ -65,6 +65,10 @@ export default {
 }
 
 .pomodoro-tab-body {
-  height: calc(100% - 48px);
+  height: calc(100vh - 48px);
+}
+
+.timer-input * { 
+  display: inline 
 }
 </style>

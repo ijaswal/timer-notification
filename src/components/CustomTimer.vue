@@ -4,9 +4,9 @@
       <v-col cols="12">
         <h1 class="display-4 font-weight-bold mb-1">
           <v-row class="mx-auto" align="center" justify="center">
-            <div class="pa-0 ma-0" contenteditable @input="setHour">{{displayHour}}</div>:
-            <div class="pa-0 ma-0" contenteditable @input="setMinute">{{displayMinute}}</div>:
-            <div class="pa-0 ma-0" contenteditable @input="setSecond">{{displaySecond}}</div>
+            <div class="pa-0 ma-0" contenteditable @blur="setHour" :key="editingHour + '-Hour'">{{displayHour}}</div>:
+            <div class="pa-0 ma-0" contenteditable @blur="setMinute" :key="editingMinute + '-Minute'">{{displayMinute}}</div>:
+            <div class="pa-0 ma-0" contenteditable @blur="setSecond" :key="editingSecond + '-Second'">{{displaySecond}}</div>
           </v-row>
         </h1>
         <audio id="audio" src="../assets/Electronic_Chime-KevanGC-495939803.mp3"></audio>
@@ -44,11 +44,13 @@ export default {
   name: "CustomTimer",
 
   data: () => ({
-    typedTime: "",
     totalTime: 1800,
     startHour: 0,
     startMinute: 30,
     startSecond: 0,
+    editingHour: false,
+    editingMinute: false,
+    editingSecond: false,
     timerFunction: null,
     countingDown: false,
     paused: false,
@@ -64,6 +66,7 @@ export default {
       return ("0" + Math.floor((this.totalTime % 3600) / 60)).slice(-2);
     },
     displaySecond: function() {
+      console.log("Recalculating Seconds")
       return ("0" + Math.floor((this.totalTime % 3600) % 60)).slice(-2);
     },
     displayTime: function() {
@@ -77,10 +80,17 @@ export default {
     }
   },
   methods: {
+    calculateTotalTime(){
+      this.totalTime =
+        3600 * this.startHour + 60 * this.startMinute + this.startSecond;
+      console.log(this.totalTime);
+    },
     startTimer() {
       this.countingDown = true;
       this.timerFunction = setInterval(() => {
         this.totalTime -= 1;
+        console.log(this.totalTime)
+        console.log(this.displaySecond)
         if (this.totalTime < 1) {
           if (this.displayNotification) {
             this.pushNotification();
@@ -99,8 +109,7 @@ export default {
     },
     stopTimer() {
       clearInterval(this.timerFunction);
-      this.totalTime =
-        3600 * this.startHour + 60 * this.startMinute + this.startSecond;
+      this.calculateTotalTime();
       this.countingDown = false;
     },
     pauseTimer() {
@@ -120,34 +129,37 @@ export default {
       console.log("AYO YOUR TIME UP");
     },
     setHour(event) {
-      let source = event.target.innerHTML;
-      if (/^\d+$/.test(source)) {
-        source = parseInt(("0" + source).slice(-2));
-        if (source > 99) {
-          source = 99;
+      let source = parseInt("0" + event.target.textContent);
+      if(!isNaN(source)){
+        if(source > 59){
+          source = 59
         }
         this.startHour = source;
       }
+      this.calculateTotalTime();
+      this.editingHour = !this.editingHour;
     },
     setMinute(event) {
-      let source = event.target.innerHTML;
-      if (/^\d+$/.test(source)) {
-        source = parseInt(("0" + source).slice(-2));
-        if (source > 59) {
-          source = 59;
+      let source = parseInt("0" + event.target.textContent);
+      if(!isNaN(source)){
+        if(source > 59){
+          source = 59
         }
         this.startMinute = source;
       }
+      this.calculateTotalTime();
+      this.editingMinute = !this.editingMinute;
     },
     setSecond(event) {
-      let source = event.target.innerHTML;
-      if (/^\d+$/.test(source)) {
-        source = parseInt(("0" + source).slice(-2));
-        if (source > 59) {
-          source = 59;
+      let source = parseInt("0" + event.target.textContent);
+      if(!isNaN(source)){
+        if(source > 59){
+          source = 59
         }
         this.startSecond = source;
       }
+      this.calculateTotalTime();
+      this.editingSecond = !this.editingSecond;
     }
   }
 };
