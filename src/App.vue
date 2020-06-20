@@ -5,7 +5,6 @@
         <v-tab key="custom">Custom</v-tab>
         <v-tab key="pomodero">Pomodoro</v-tab>
       </v-tabs>
-
       <v-tabs-items v-model="tab">
         <v-tab-item key="custom">
           <CustomTimer></CustomTimer>
@@ -65,7 +64,7 @@ export default {
 }
 
 .pomodoro-tab-body {
-  height: calc(100vh - 48px);
+  height: calc(100% - 48px);
 }
 
 .timer-input * { 

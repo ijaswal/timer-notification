@@ -2,12 +2,12 @@
   <v-container class="pomodoro-theme pomodoro-tab-body" fill-height fluid>
     <v-row align="center" justify="center" class="text-center">
       <v-checkbox v-model="ringAlarm" color="#d04343" class="mx-4" label="Play Alarm"></v-checkbox>
-      <v-checkbox
+      <!-- <v-checkbox
         v-model="displayNotification"
         color="#d04343"
         class="mx-4"
         label="Display Notification"
-      ></v-checkbox>
+      ></v-checkbox> -->
     </v-row>
     <v-row align="center" justify="center" class="text-center">
       <v-card flat class="px-12 py-3 mb-12" color="#fb4f4f">
@@ -19,7 +19,7 @@
               <v-btn v-if="!this.countingDown" dark color="#d04343" @click="startTimer">
                 <v-icon left>mdi-alarm</v-icon>Start
               </v-btn>
-              <v-btn v-else dark color="#4a7489" @click="stopTimer">
+              <v-btn v-else dark color="#d04343" @click="stopTimer">
                 <v-icon left>mdi-alarm-off</v-icon>Stop
               </v-btn>
             </v-col>
@@ -114,9 +114,9 @@ export default {
       this.timerFunction = setInterval(() => {
         this.totalTime -= 1;
         if (this.totalTime < 1) {
-          if (this.displayNotification) {
-            this.pushNotification();
-          }
+          // if (this.displayNotification) {
+          //   this.pushNotification();
+          // }
           if (this.ringAlarm) {
             this.playAlarm();
           }
@@ -196,9 +196,9 @@ export default {
       const audio = document.getElementById("audio");
       audio.play();
     },
-    pushNotification() {
-      console.log("AYO YOUR TIME UP");
-    },
+    // pushNotification() {
+    //   console.log("Your time has come");
+    // },
     getHours(totalSeconds) {
       return Math.floor(totalSeconds / 3600);
     },

@@ -13,12 +13,12 @@
       </v-col>
       <v-checkbox v-model="repeatTime" color="#4a7489" class="mx-4" label="Repeat"></v-checkbox>
       <v-checkbox v-model="ringAlarm" color="#4a7489" class="mx-4" label="Play Alarm"></v-checkbox>
-      <v-checkbox
+      <!-- <v-checkbox
         v-model="displayNotification"
         color="#4a7489"
         class="mx-4"
         label="Display Notification"
-      ></v-checkbox>
+      ></v-checkbox> -->
       <v-col cols="12">
         <v-btn v-if="!this.countingDown" dark color="#4a7489" @click="startTimer">
           <v-icon left>mdi-alarm</v-icon>Start
@@ -92,9 +92,9 @@ export default {
         console.log(this.totalTime)
         console.log(this.displaySecond)
         if (this.totalTime < 1) {
-          if (this.displayNotification) {
-            this.pushNotification();
-          }
+          // if (this.displayNotification) {
+          //   this.pushNotification();
+          // }
           if (this.ringAlarm) {
             this.playAlarm();
           }
@@ -125,9 +125,9 @@ export default {
       const audio = document.getElementById("audio");
       audio.play();
     },
-    pushNotification() {
-      console.log("AYO YOUR TIME UP");
-    },
+    // pushNotification() {
+    //   console.log("Your time has come");
+    // },
     setHour(event) {
       let source = parseInt("0" + event.target.textContent);
       if(!isNaN(source)){
