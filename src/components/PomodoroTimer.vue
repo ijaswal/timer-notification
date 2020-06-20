@@ -7,7 +7,7 @@
         color="#d04343"
         class="mx-4"
         label="Display Notification"
-      ></v-checkbox> -->
+      ></v-checkbox>-->
     </v-row>
     <v-row align="center" justify="center" class="text-center">
       <v-card flat class="px-12 py-3 mb-12" color="#fb4f4f">
@@ -120,7 +120,6 @@ export default {
           if (this.ringAlarm) {
             this.playAlarm();
           }
-          console.log(this.pomodoroCount);
           this.pomodoroArray[this.pomodoroCount] = true;
           this.pomodoroCount++;
           if (this.pomodoroCount < 4) {
@@ -192,7 +191,6 @@ export default {
       }, 1000);
     },
     playAlarm() {
-      console.log("BRRIIING");
       const audio = document.getElementById("audio");
       audio.play();
     },

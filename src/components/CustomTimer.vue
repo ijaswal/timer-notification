@@ -4,9 +4,24 @@
       <v-col cols="12">
         <h1 class="display-4 font-weight-bold mb-1">
           <v-row class="mx-auto" align="center" justify="center">
-            <div class="pa-0 ma-0" contenteditable @blur="setHour" :key="editingHour + '-Hour'">{{displayHour}}</div>:
-            <div class="pa-0 ma-0" contenteditable @blur="setMinute" :key="editingMinute + '-Minute'">{{displayMinute}}</div>:
-            <div class="pa-0 ma-0" contenteditable @blur="setSecond" :key="editingSecond + '-Second'">{{displaySecond}}</div>
+            <div
+              class="pa-0 ma-0"
+              contenteditable
+              @blur="setHour"
+              :key="editingHour + '-Hour'"
+            >{{displayHour}}</div>:
+            <div
+              class="pa-0 ma-0"
+              contenteditable
+              @blur="setMinute"
+              :key="editingMinute + '-Minute'"
+            >{{displayMinute}}</div>:
+            <div
+              class="pa-0 ma-0"
+              contenteditable
+              @blur="setSecond"
+              :key="editingSecond + '-Second'"
+            >{{displaySecond}}</div>
           </v-row>
         </h1>
         <audio id="audio" src="../assets/Electronic_Chime-KevanGC-495939803.mp3"></audio>
@@ -18,7 +33,7 @@
         color="#4a7489"
         class="mx-4"
         label="Display Notification"
-      ></v-checkbox> -->
+      ></v-checkbox>-->
       <v-col cols="12">
         <v-btn v-if="!this.countingDown" dark color="#4a7489" @click="startTimer">
           <v-icon left>mdi-alarm</v-icon>Start
@@ -66,7 +81,6 @@ export default {
       return ("0" + Math.floor((this.totalTime % 3600) / 60)).slice(-2);
     },
     displaySecond: function() {
-      console.log("Recalculating Seconds")
       return ("0" + Math.floor((this.totalTime % 3600) % 60)).slice(-2);
     },
     displayTime: function() {
@@ -80,17 +94,14 @@ export default {
     }
   },
   methods: {
-    calculateTotalTime(){
+    calculateTotalTime() {
       this.totalTime =
         3600 * this.startHour + 60 * this.startMinute + this.startSecond;
-      console.log(this.totalTime);
     },
     startTimer() {
       this.countingDown = true;
       this.timerFunction = setInterval(() => {
         this.totalTime -= 1;
-        console.log(this.totalTime)
-        console.log(this.displaySecond)
         if (this.totalTime < 1) {
           // if (this.displayNotification) {
           //   this.pushNotification();
@@ -121,7 +132,6 @@ export default {
       this.paused = false;
     },
     playAlarm() {
-      console.log("BRRIIING");
       const audio = document.getElementById("audio");
       audio.play();
     },
@@ -130,9 +140,9 @@ export default {
     // },
     setHour(event) {
       let source = parseInt("0" + event.target.textContent);
-      if(!isNaN(source)){
-        if(source > 59){
-          source = 59
+      if (!isNaN(source)) {
+        if (source > 59) {
+          source = 59;
         }
         this.startHour = source;
       }
@@ -141,9 +151,9 @@ export default {
     },
     setMinute(event) {
       let source = parseInt("0" + event.target.textContent);
-      if(!isNaN(source)){
-        if(source > 59){
-          source = 59
+      if (!isNaN(source)) {
+        if (source > 59) {
+          source = 59;
         }
         this.startMinute = source;
       }
@@ -152,9 +162,9 @@ export default {
     },
     setSecond(event) {
       let source = parseInt("0" + event.target.textContent);
-      if(!isNaN(source)){
-        if(source > 59){
-          source = 59
+      if (!isNaN(source)) {
+        if (source > 59) {
+          source = 59;
         }
         this.startSecond = source;
       }
