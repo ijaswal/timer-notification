@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-content :class="{'custom-theme': tab===0, 'pomodoro-theme': tab===1}">
+    <v-main :class="{'custom-theme': tab===0, 'pomodoro-theme': tab===1}">
       <v-tabs fixed-tabs dark :background-color="this.tabColor" v-model="tab">
         <v-tab key="custom">Custom</v-tab>
         <v-tab key="pomodero">Pomodoro</v-tab>
@@ -13,7 +13,7 @@
           <PomodoroTimer></PomodoroTimer>
         </v-tab-item>
       </v-tabs-items>
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 

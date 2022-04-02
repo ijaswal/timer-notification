@@ -1,5 +1,5 @@
 <template>
-  <v-container class="pomodoro-theme pomodoro-tab-body" fill-height fluid>
+  <v-main class="pomodoro-theme pomodoro-tab-body" fill-height fluid>
     <v-row align="center" justify="center" class="text-center">
       <v-checkbox v-model="ringAlarm" color="#d04343" class="mx-4" label="Play Alarm"></v-checkbox>
       <!-- <v-checkbox
@@ -47,7 +47,7 @@
         </v-col>
       </v-card>
     </v-row>
-  </v-container>
+  </v-main>
 </template>
 
 <script>
@@ -61,14 +61,14 @@ export default {
     totalShortTime: 300,
     totalLongTime: 900,
     startHour: 0,
-    startMinute: 0,
-    startSecond: 3,
+    startMinute: 25,
+    startSecond: 0,
     startShortHour: 0,
-    startShortMinute: 0,
-    startShortSecond: 5,
+    startShortMinute: 5,
+    startShortSecond: 0,
     startLongHour: 0,
-    startLongMinute: 0,
-    startLongSecond: 10,
+    startLongMinute: 15,
+    startLongSecond: 0,
     timerFunction: null,
     shortBreakFunction: null,
     longBreakFunction: null,
@@ -155,9 +155,9 @@ export default {
       this.shortBreakFunction = setInterval(() => {
         this.totalShortTime -= 1;
         if (this.totalShortTime < 1) {
-          if (this.displayNotification) {
-            this.pushNotification();
-          }
+          //if (this.displayNotification) {
+          //  this.pushNotification();
+          //}
           if (this.ringAlarm) {
             this.playAlarm();
           }
@@ -174,9 +174,9 @@ export default {
       this.longBreakFunction = setInterval(() => {
         this.totalLongTime -= 1;
         if (this.totalLongTime < 1) {
-          if (this.displayNotification) {
-            this.pushNotification();
-          }
+          //if (this.displayNotification) {
+          //  this.pushNotification();
+          //}
           if (this.playAlarm) {
             this.playAlarm();
           }

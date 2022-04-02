@@ -3,6 +3,6 @@ module.exports = {
     "vuetify"
   ],
   publicPath: process.env.NODE_ENV === 'production'
-    ? '/timer-notification/'
+    ? 'ijaswal.github.io/timer-notification/'
     : '/'
 }
